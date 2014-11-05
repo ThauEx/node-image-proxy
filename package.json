@@ -1,0 +1,19 @@
+{
+  "name": "imageproxy",
+  "version": "0.1.0",
+  "description": "simple image proxy with cache",
+  "main": "index.js",
+  "bin": "./bin/imageproxy",
+  "dependencies": {
+    "express": "~4.9.8",
+    "needle": "~0.7.10",
+    "forever-monitor": "~1.3.0",
+    "forever": "~0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
