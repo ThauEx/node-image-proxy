@@ -12,8 +12,8 @@ npm install
 ```
 nohup node index.js &
 ```
-It listens to port 9091
+It listens to port 9091, but can be changed via the *PORT* ENV
 
 ####TODO
-* configurable port
+* ~~configurable port~~
 * optimize images
