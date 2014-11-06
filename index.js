@@ -8,12 +8,7 @@ app.use('/', function (req, res) {
     var URL = req.url.substr(1);
 
     getFile(URL, function(err, data) {
-/*            res.writeHead(200, {
-                'Content-Type': 'image/png'
-            });
-*/
-//            res.write(data);
-            res.end(data, 'binary');
+        res.end(data, 'binary');
     });
 })
 
@@ -52,33 +47,12 @@ function getFile(url, callback) {
 
     function fetch() {
         var out = fs.createWriteStream(savePath);
-        http.get(url).pipe(out);
-        fileFetch();
-        /*http.get(url, function(error, res) {
-            if (!error && res.statusCode < 400) {
-                var imagedata = '';
-                res.setEncoding('binary');
-
-                res.on('readable', function(chunk) {
-                    imagedata += chunk;
-                });
-
-                res.on('end', function() {
-                    writeImage(imagedata);
-                });
-            }
-        });*/
-    }
-
-    function writeImage(imagedata) {
-        fs.writeFile(savePath, imagedata, 'binary', function(err) {
-            if (err) {
-                throw err
-            };
+        http.get(url, function(error, response) {
             fileFetch();
-        });
+        }).pipe(out);
     }
 }
+
 var server = app.listen(9091, function () {
     var host = server.address().address
     var port = server.address().port
