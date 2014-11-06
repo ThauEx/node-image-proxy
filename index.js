@@ -53,7 +53,8 @@ function getFile(url, callback) {
     }
 }
 
-var server = app.listen(9091, function () {
+app.set('port', process.env.PORT || 9091);
+var server = app.listen(app.get('port'), function () {
     var host = server.address().address
     var port = server.address().port
 
