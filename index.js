@@ -5,11 +5,7 @@ var crypto = require('crypto');
 var fs = require('fs');
 
 app.use('/', function (req, res) {
-    var URL = req.url;
-
-    if (URL.substr(0, 5) == '/0x0/') {
-        URL = URL.replace('/0x0/', '');
-    }
+    var URL = req.url.substr(1);
 
     getFile(URL, function(err, data) {
 /*            res.writeHead(200, {
