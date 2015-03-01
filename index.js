@@ -60,6 +60,7 @@ function getFile(url, callback) {
     }
 
     function downloadFile() {
+        var validImage = false;
         var fileStream = fs.createWriteStream(savePath),
             request = http(url,
                 function (error) {
@@ -72,11 +73,13 @@ function getFile(url, callback) {
 
         request
             .on('data', function (data) {
-                if (!imageType(data)) {
+                if (!imageType(data) && validImage === false) {
                     invalidImage = true;
                     console.log('Url is no image: ' + url);
                     request.abort();
                     showDummyImage();
+                } else {
+                    validImage = true;
                 }
             })
             .on('response', function (response) {
